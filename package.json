@@ -1,6 +1,6 @@
 {
     "name": "changemachine",
-    "description": "Steelmesh ChangeMachine - CouchDB change processor",
+    "description": "changemachine - handle couchdb change notifications using neuron",
     "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
     "tags": ["steelmesh", "changes", "couchdb", "queue", "processor"],
     "version": "0.1.0",
