@@ -1,0 +1,33 @@
+{
+    "name": "changemachine",
+    "description": "Steelmesh ChangeMachine - CouchDB change processor",
+    "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
+    "tags": ["steelmesh", "changes", "couchdb", "queue", "processor"],
+    "version": "0.1.0",
+    
+    "main": "index.js",
+    "engines": { "node": ">= 0.4.x < 0.7.0" },
+        
+    "dependencies": {
+        "debug": "*",
+        "follow": "0.6.x",
+        "neuron": "0.4.x"
+    },
+    
+    "devDependencies": {
+    },
+    
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/steelmesh/changemachine.git"
+    },
+    
+    "bugs": {
+        "url": "http://github.com/steelmesh/changemachine/issues"
+    },
+    
+    "contributors": [
+    ],
+    
+    "private": true
+}
