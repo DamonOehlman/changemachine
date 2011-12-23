@@ -1,5 +1,9 @@
 # changemachine changelog
 
+## 0.1.4
+
+- Made item methods chainable
+
 ## 0.1.3
 
 - Added basic state storage (`JsonStore`)
