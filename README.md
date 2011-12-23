@@ -15,8 +15,12 @@ This simple example demonstrates responding to changes from an external couchdb:
 ```js
 var cm = require('changemachine'),
     machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
-        concurrency: 10 // override neurons default concurrency of 50
+        concurrency: 25 // override neurons default concurrency of 50
     });
+
+machine.on('enter', function(item) {
+    console.log('   entered: ' + item.id, machine.stats());
+});
     
 // perform actions for each of the 
 machine.on('process', function(item) {
@@ -27,6 +31,53 @@ machine.on('process', function(item) {
         console.log('      done: ' + item.id, machine.stats());
     }, Math.random() * 5000);
 });
+```
+
+If it is all working nicely, you should see output similar to [this](https://github.com/steelmesh/changemachine/blob/master/examples/simple.output.txt).
+
+### Simple Example demonstrating `ready` queue
+
+In the example above, items existed in either the `waiting` or `processing` queues.  This because the machine had a `process` event that could be used to process the items as they enter the machine.  In a case where a `process` event handler is not defined, however, the items ready for processing (according to neuron's concurrency setting) will be placed in the `ready` queue.
+
+Let's modify the previous example to wire up the process event after 5 seconds:
+
+```js
+var cm = require('../'),
+    machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
+        concurrency: 25 // override neurons default concurrency of 50
+    });
+    
+machine.on('enter', function(item) {
+    console.log('   entered: ' + item.id, machine.stats());
+});
+
+setTimeout(function() {
+    // perform actions for each of the 
+    machine.on('process', function(item) {
+        console.log('processing: ' + item.id, machine.stats());
+
+        setTimeout(function() {
+            item.done();
+            console.log('      done: ' + item.id, machine.stats());
+        }, Math.random() * 5000);
+    });
+}, 5000);
+```
+
+In the [output](https://github.com/steelmesh/changemachine/blob/master/examples/delayedprocess.output.txt) for this example, you should see that before processing starts a number of items are reported in the `ready` queue.  Once the `process` event is connected however, the items move directly from a `waiting` status to `processing`.
+
+### Non Notifier Change Machines
+
+While changemachine is designed to work in conjuction with [changemate](https://github.com/steelmesh/changemate), it is possible to create items and process them manually also.
+
+```
+To be completed
+```
+
+### Machine Chaining
+
+```
+To be completed
 ```
 
 ## System Internals
