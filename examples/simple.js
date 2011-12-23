@@ -1,20 +1,14 @@
 var cm = require('../'),
-    machine;
+    machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
+        concurrency: 10 // override neurons default concurrency of 50
+    });
     
-// set the job manager concurrency
-cm.jobmanager.concurrency = 10;
-machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood');
-
 // perform actions for each of the 
 machine.on('process', function(item) {
-    console.log('item ' + item.id + ' is being processed');
-    
-    setTimeout(function() {
-        console.log('item ' + item.id + ' is done');
-        item.done();
-    }, Math.random() * 5000);
-});
+    console.log('processing: ' + item.id, machine.stats());
 
-machine.on('leave', function(data) {
-    
+    setTimeout(function() {
+        item.done();
+        console.log('      done: ' + item.id, machine.stats());
+    }, Math.random() * 5000);
 });

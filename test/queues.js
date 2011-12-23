@@ -22,10 +22,26 @@ describe('changemachine neuron mapping', function() {
             process.nextTick(function() {
                 assert.equal(_machine.stats().ready, 1, 'item in "ready" queue');
                 assert.equal(_machine.stats().entered, 0, 'item removed from "entered" queue');
+                assert.equal(_machine.stats().processing, undefined, 'machine does not yet have a processing queue');
                 done();
             });
         });
         
         newItem.enter(_machine);
+    });
+    
+    it('will start processing items once the machine has a process handler', function(done) {
+        assert.equal(_machine.stats().ready, 1, 'item still in "ready" queue');
+        
+        _machine.on('process', function(item) {
+            assert.equal(_machine.stats().processing, 1, 'item now in "processing" queue');
+            assert.equal(_machine.stats().ready, 0, 'item no longer in "ready" queue');
+            
+            // mark the item as complete
+            item.done();
+            
+            assert.equal(_machine.stats().processing, 0, 'item removed from "processing" queue');
+            done();
+        });
     });
 });
