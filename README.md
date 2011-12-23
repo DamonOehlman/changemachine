@@ -66,10 +66,6 @@ setTimeout(function() {
 
 In the [output](https://github.com/steelmesh/changemachine/blob/master/examples/delayedprocess.output.txt) for this example, you should see that before processing starts a number of items are reported in the `ready` queue.  Once the `process` event is connected however, the items move directly from a `waiting` status to `processing`.
 
-### Non Notifier Change Machines
-
-While changemachine is designed to work in conjuction with [changemate](https://github.com/steelmesh/changemate), it is possible to create items and process them manually also.
-
 ### Serializing Data from CouchDB
 
 If you wanted to extract all the JSON data from documents in a couch database (not the attachments though - although it could be combined with [attachmate](https://github.com/steelmesh/attachmate) to achieve that) the following example is probably of interest:
@@ -107,6 +103,10 @@ machine.on('process', function(item) {
     }
 });
 ```
+
+### Non Notifier Change Machines
+
+While changemachine is designed to work in conjuction with [changemate](https://github.com/steelmesh/changemate), it is possible to create items and process them manually also.
 
 ```
 To be completed
