@@ -90,5 +90,6 @@ To be completed
 
 Some alternative systems that do similar things are:
 
-- [banzai](https://github.com/pgte/banzai)
+- [banzai](https://github.com/pgte/banzai) - Banzai looks like an excellent system for processing documents through a number of various states.  Banzai's implementation has defintely influenced parts of changemachine.
 
+- [hook.io](http://hook.io/) - If you are building, loosely-coupled, distributed systems then hook.io is one of the best choices in the #nodejs space.  There are instances where changemachine could perform a similar function to hook, but in most cases changemachine is designed for simpler scenarios.
