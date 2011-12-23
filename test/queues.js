@@ -15,13 +15,13 @@ describe('changemachine neuron mapping', function() {
         _machine.once('enter', function(item) {
             assert.strictEqual(newItem, item);
             
-            // check that the item status is flagged as entered
-            assert.equal(_machine.stats().entered, 1, 'item in "entered" queue');
+            // check that the item status is flagged as waiting
+            assert.equal(_machine.stats().waiting, 1, 'item in "waiting" queue');
             
             // check on the next tick the status has changed to ready
             process.nextTick(function() {
                 assert.equal(_machine.stats().ready, 1, 'item in "ready" queue');
-                assert.equal(_machine.stats().entered, 0, 'item removed from "entered" queue');
+                assert.equal(_machine.stats().waiting, 0, 'item removed from "waiting" queue');
                 assert.equal(_machine.stats().processing, undefined, 'machine does not yet have a processing queue');
                 done();
             });

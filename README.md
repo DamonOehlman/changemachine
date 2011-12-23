@@ -1,6 +1,8 @@
-# changemachine
+# changemachine 
 
-The changemachine is a critical component in the [Steelmesh stack](http://github.com/steelmesh).  It is responsible for monitoring and responding to changes in a number of couchdb instances and taking appropriate actions in response to those changes.
+<a href="http://travis-ci.org/#!/steelmesh/changemachine"><img src="https://secure.travis-ci.org/steelmesh/changemachine.png" alt="Build Status"></a>
+
+Changemachine is a critical component in the [Steelmesh stack](http://github.com/steelmesh).  It is responsible for monitoring and responding to changes in a number of couchdb instances and taking appropriate actions in response to those changes.
 
 The implementation of changemachine is reasonably simple thanks to the [flatiron neuron](https://github.com/flatiron/neuron) queueing library and through leveraging [changemate](https://github.com/steelmesh/changemate) changemate notifiers.  While at the present stage an implementation of changemachine would have been possible with the excellent [follow](https://github.com/iriscouch/follow) library the long term plan is to support monitoring changes from the filesystem and other sources so work changemate has been integrated instead.
 
