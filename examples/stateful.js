@@ -13,5 +13,7 @@ machine.on('process', function(item) {
     item.done();
     
     // if we have processed 10 items, then stop
-    machine.notifier.close();
+    if (counter >= 10) {
+        machine.notifier.close();
+    }
 });

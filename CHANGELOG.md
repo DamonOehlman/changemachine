@@ -2,7 +2,7 @@
 
 ## 0.1.3
 
-- Added basic state storage
+- Added basic state storage (`JsonStore`)
 
 ## 0.1.2
 

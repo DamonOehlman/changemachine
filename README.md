@@ -44,7 +44,7 @@ In the example above, items existed in either the `waiting` or `processing` queu
 Let's modify the previous example to wire up the process event after 5 seconds:
 
 ```js
-var cm = require('../'),
+var cm = require('changemachine'),
     machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
         concurrency: 25 // override neurons default concurrency of 50
     });
@@ -68,12 +68,40 @@ setTimeout(function() {
 
 In the [output](https://github.com/steelmesh/changemachine/blob/master/examples/delayedprocess.output.txt) for this example, you should see that before processing starts a number of items are reported in the `ready` queue.  Once the `process` event is connected however, the items move directly from a `waiting` status to `processing`.
 
+### State Storage
+
+At this stage changemachine implements very simple state storage, but it works nicely and event attempts to synchronously persist data when the process `exit` event is detected.
+
+Below is an example that demonstrates how a state store is configured:
+
+```js
+var cm = require('changemachine'),
+    path = require('path'),
+    machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
+        stateStore: new cm.JsonStore({ filename: path.resolve(__dirname, 'state.json') })
+    }),
+    counter = 0;
+    
+// perform actions for each of the 
+machine.on('process', function(item) {
+    console.log('processing item sequence: ' + item.seq);
+    
+    counter++;
+    item.done();
+    
+    // if we have processed 10 items, then stop
+    if (counter >= 10) {
+        machine.notifier.close();
+    }
+});
+```
+
 ### Serializing Data from CouchDB
 
 If you wanted to extract all the JSON data from documents in a couch database (not the attachments though - although it could be combined with [attachmate](https://github.com/steelmesh/attachmate) to achieve that) the following example is probably of interest:
 
 ```js
-var cm = require('changemate'),
+var cm = require('changemachine'),
     fs = require('fs'),
     path = require('path'),
     machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
