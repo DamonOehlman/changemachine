@@ -9,7 +9,14 @@ describe('changemachine neuron mapping', function() {
         assert(_machine);
     });
     
-    it('can add items to the machine', function() {
-        new cm.Item({ id: 'test' }).enter(_machine);
+    it('can add items to the machine', function(done) {
+        var newItem = new cm.Item();
+        
+        _machine.once('enter', function(item) {
+            assert.strictEqual(newItem, item);
+            done();
+        });
+        
+        newItem.enter(_machine);
     });
 });
