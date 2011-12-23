@@ -10,7 +10,7 @@
         
     "dependencies": {
         "debug": "*",
-        "changemate": ">= 0.4.2",
+        "changemate": ">= 0.4.4",
         "neuron": "0.4.x"
     },
     

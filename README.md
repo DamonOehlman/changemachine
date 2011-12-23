@@ -2,7 +2,7 @@
 
 The changemachine is a critical component in the [Steelmesh stack](http://github.com/steelmesh).  It is responsible for monitoring and responding to changes in a number of couchdb instances and taking appropriate actions in response to those changes.
 
-The implementation of changemachine is reasonably simple thanks to the [Neuron](https://github.com/flatiron/neuron) queueing library and through leveraging [changemate](https://github.com/steelmesh/changemate) changemate notifiers.  While at the present stage an implementation of changemachine would have been possible with the excellent [follow](https://github.com/iriscouch/follow) library the long term plan is to support monitoring changes from the filesystem and other sources so work changemate has been integrated instead.
+The implementation of changemachine is reasonably simple thanks to the [flatiron neuron](https://github.com/flatiron/neuron) queueing library and through leveraging [changemate](https://github.com/steelmesh/changemate) changemate notifiers.  While at the present stage an implementation of changemachine would have been possible with the excellent [follow](https://github.com/iriscouch/follow) library the long term plan is to support monitoring changes from the filesystem and other sources so work changemate has been integrated instead.
 
 ## Usage
 
@@ -69,6 +69,44 @@ In the [output](https://github.com/steelmesh/changemachine/blob/master/examples/
 ### Non Notifier Change Machines
 
 While changemachine is designed to work in conjuction with [changemate](https://github.com/steelmesh/changemate), it is possible to create items and process them manually also.
+
+### Serializing Data from CouchDB
+
+If you wanted to extract all the JSON data from documents in a couch database (not the attachments though - although it could be combined with [attachmate](https://github.com/steelmesh/attachmate) to achieve that) the following example is probably of interest:
+
+```js
+var cm = require('changemate'),
+    fs = require('fs'),
+    path = require('path'),
+    machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
+        include_docs: true,
+        concurrency: 10 // override neurons default concurrency of 50
+    }),
+    dataPath = path.resolve(__dirname, 'data');
+    
+// perform actions for each of the 
+console.log('waiting for change information');
+machine.on('process', function(item) {
+    try {
+        var text = JSON.stringify(item.doc);
+        
+        fs.writeFile(path.join(dataPath, item.id + '.json'), text, 'utf8', function(err) {
+            if (err) {
+                item.fail(err);
+            }
+            else {
+                item.done();
+            }
+            
+            console.log('wrote ' + item.id + '.json', machine.stats());
+        });
+    }
+    catch (e) {
+        console.log('failed writing: ' + item.id, e);
+        item.fail(e);
+    }
+});
+```
 
 ```
 To be completed

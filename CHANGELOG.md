@@ -1,5 +1,10 @@
 # changemachine changelog
 
+## 0.1.2
+
+- Added error message for `item.fail` call
+- Parameter passthrough for item `done` and `fail` events
+
 ## 0.1.1
 
 - Reworked items and queuing to make manual item / machine interaction simpler.
