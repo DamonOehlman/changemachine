@@ -1,5 +1,9 @@
 # changemachine changelog
 
+## 0.1.3
+
+- Added basic state storage
+
 ## 0.1.2
 
 - Added error message for `item.fail` call
