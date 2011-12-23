@@ -6,4 +6,5 @@ exports = module.exports = function(target, opts) {
 
 Machine = exports.Machine = require('./lib/machine').Machine;
 
+exports.Item = require('./lib/item').Item;
 exports.jobmanager = require('./lib/jobmanager');

@@ -3,13 +3,14 @@ var cm = require('../'),
     
 // set the job manager concurrency
 cm.jobmanager.concurrency = 10;
-machine = new cm.Machine('http://sidelab.iriscouch.com/seattle_neighbourhood');
+machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood');
 
 // perform actions for each of the 
-machine.on('enter', function(item) {
-    console.log('item ' + item.id + ' has entered the machine');
+machine.on('process', function(item) {
+    console.log('item ' + item.id + ' is being processed');
     
     setTimeout(function() {
+        console.log('item ' + item.id + ' is done');
         item.done();
     }, Math.random() * 5000);
 });
