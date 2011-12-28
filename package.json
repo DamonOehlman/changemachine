@@ -27,7 +27,7 @@
         "url": "http://github.com/steelmesh/changemachine/issues"
     },
     
-    "scripts": { "test": "mocha --reporter spec -t 4000" },
+    "scripts": { "test": "mocha --reporter spec -t 3000" },
     
     "contributors": [
     ]

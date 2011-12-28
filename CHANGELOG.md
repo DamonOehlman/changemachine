@@ -1,5 +1,11 @@
 # changemachine changelog
 
+## 0.2.2
+
+- Rework "at capacity" detection logic
+- Refine machine.close logic to clean up neuron job queue
+- Only allow one machine with one id active at a time
+
 ## 0.2.1
 
 - Add the `leaveOn` member for a machine, by default leaveOn.fail is false
