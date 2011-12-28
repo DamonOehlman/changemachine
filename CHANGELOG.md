@@ -1,5 +1,9 @@
 # changemachine changelog
 
+## 0.1.5
+
+- Revisions to checkpointing logic (enable fails to checkpoint)
+
 ## 0.1.4
 
 - Made item methods chainable
