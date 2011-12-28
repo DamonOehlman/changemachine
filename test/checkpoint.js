@@ -5,6 +5,7 @@ var assert = require('assert'),
     debug = require('debug')('tests'),
     target = '<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood',
     storeFile = path.resolve(__dirname, 'checkpoint.json'),
+    _readTimer = 0,
     _lastSeq,
     _machine,
     _processedCount = 0,
@@ -25,10 +26,21 @@ function _captureUpdate(status, opts, callback) {
 } // _captureUpdate
 
 function _readLastSeq(callback) {
-    fs.readFile(storeFile, 'utf8', function(err, data) {
-        data = JSON.parse(data);
-        callback(data[target].since);
-    });
+    
+    function readSeq() {
+        clearTimeout(_readTimer);
+        
+        fs.readFile(storeFile, 'utf8', function(err, data) {
+            data = JSON.parse(data);
+            callback(data[target].since);
+        });
+    }
+    
+    _machine.storage.removeAllListeners('done');
+    _machine.storage.on('done', readSeq);
+
+    clearTimeout(_readTimer);
+    _readTimer = setTimeout(readSeq, 500);
 } // readLastSeq
     
 describe('check json checkpoint storage works', function() {
