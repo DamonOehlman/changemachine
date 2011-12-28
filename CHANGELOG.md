@@ -3,6 +3,8 @@
 ## 0.1.6
 
 - calling `done` on an item with an `error` in the options, now maps to a `fail`
+- added a `close` method to a machine which closes the underlying changemate notifier
+- changed JsonStore to use `fs.writeFileSync` as in particular cases callback was never firing for `fs.writeFile`
 
 ## 0.1.5
 
