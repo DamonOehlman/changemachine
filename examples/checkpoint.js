@@ -1,7 +1,7 @@
 var cm = require('../'),
     path = require('path'),
     machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
-        stateStore: new cm.JsonStore({ filename: path.resolve(__dirname, 'state.json') })
+        storage: new cm.JsonStore({ filename: path.resolve(__dirname, 'checkpoint.json') })
     }),
     counter = 0;
     

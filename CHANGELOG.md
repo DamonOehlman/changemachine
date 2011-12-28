@@ -3,6 +3,7 @@
 ## 0.1.4
 
 - Made item methods chainable
+- State now referenced as checkpoint (it's more accurate)
 
 ## 0.1.3
 

@@ -7,19 +7,19 @@ var assert = require('assert'),
     _processedCount = 0,
     _store;
     
-describe('check json state store works', function() {
-    it('can create a state store', function() {
-        _store = new cm.JsonStore({ filename: path.resolve(__dirname, 'state.json') });
+describe('check json checkpoint storage works', function() {
+    it('can create a store', function() {
+        _store = new cm.JsonStore({ filename: path.resolve(__dirname, 'checkpoint.json') });
         assert(_store);
     });
     
     it('can create a machine to handle couch updates', function() {
         _machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
-            stateStore: _store
+            storage: _store
         });
         
         assert(_machine);
-        assert.strictEqual(_machine.stateStore, _store, 'machine has been created with the correct store');
+        assert.strictEqual(_machine.storage, _store, 'machine has been created with the correct store');
     });
     
     it('can capture process events', function(done) {
