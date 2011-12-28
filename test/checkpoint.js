@@ -17,11 +17,11 @@ function _captureUpdate(status, opts, callback) {
         _lastSeq = item.seq;
         _processedCount++;
         
+        // trigger the callback
+        callback();
+
         // call the status method
         item[status].call(item, opts);
-        
-        // trigger the callback
-        process.nextTick(callback);
     };
 } // _captureUpdate
 
@@ -65,9 +65,11 @@ describe('check json checkpoint storage works', function() {
     
     it('storage not updated on fail', function(done) {
         _machine.once('process', _captureUpdate('fail', {}, function() {
-            _readLastSeq(function(readSeq) {
-                assert.notEqual(readSeq, _lastSeq);
-                done();
+            _machine.once('fail', function(item) {
+                _readLastSeq(function(readSeq) {
+                    assert.notEqual(readSeq, _lastSeq);
+                    done();
+                });
             });
         }));
     });
@@ -110,4 +112,23 @@ describe('check json checkpoint storage works', function() {
         }));
     });
     
+    
+    it('storage updated on skip', function(done) {
+        _machine.once('process', _captureUpdate('skip', {}, function() {
+            _readLastSeq(function(readSeq) {
+                assert.equal(readSeq, _lastSeq);
+                done();
+            });
+        }));
+    });
+    
+    it('storage not updated on done, when error supplied', function(done) {
+        _machine.checkpointOn.fail = false;
+        _machine.once('process', _captureUpdate('done', { error: 'This has failed' }, function() {
+            _readLastSeq(function(readSeq) {
+                assert.notEqual(readSeq, _lastSeq);
+                done();
+            });
+        }));
+    });
 });

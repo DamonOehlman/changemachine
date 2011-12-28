@@ -1,5 +1,9 @@
 # changemachine changelog
 
+## 0.1.6
+
+- calling `done` on an item with an `error` in the options, now maps to a `fail`
+
 ## 0.1.5
 
 - Revisions to checkpointing logic (enable fails to checkpoint)
