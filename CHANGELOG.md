@@ -1,5 +1,9 @@
 # changemachine changelog
 
+## 0.2.0
+
+- Bump version to reflect addition of new methods in 0.1.x versions
+
 ## 0.1.7
 
 - Added `pause` and `resume` methods and events to the machine for flow control help
