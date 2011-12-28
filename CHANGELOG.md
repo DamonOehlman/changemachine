@@ -5,6 +5,7 @@
 - Rework "at capacity" detection logic
 - Refine machine.close logic to clean up neuron job queue
 - Only allow one machine with one id active at a time
+- Ensure that if a notifier is created for the machine, then it is paused if the machine is in a paused state.
 
 ## 0.2.1
 
