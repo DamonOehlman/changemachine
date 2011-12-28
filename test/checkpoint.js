@@ -72,4 +72,25 @@ describe('check json checkpoint storage works', function() {
             });
         }));
     });
+
+    it('storage updated on fail, when machine checkpointOn.fail = true', function(done) {
+        _machine.checkpointOn.fail = true;
+        _machine.once('process', _captureUpdate('fail', {}, function() {
+            _readLastSeq(function(readSeq) {
+                assert.equal(readSeq, _lastSeq);
+                done();
+            });
+        }));
+    });
+    
+    it('storage not updated on done, when machine checkpointOn.done = false', function(done) {
+        _machine.checkpointOn.done = false;
+        _machine.once('process', _captureUpdate('done', {}, function() {
+            _readLastSeq(function(readSeq) {
+                assert.notEqual(readSeq, _lastSeq);
+                done();
+            });
+        }));
+    });
+    
 });

@@ -3,6 +3,7 @@
 ## 0.1.5
 
 - Revisions to checkpointing logic (enable fails to checkpoint)
+- Added `checkpointOn` object to machine for toggling checkpoint on `done`, `fail`, etc
 
 ## 0.1.4
 
