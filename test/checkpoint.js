@@ -31,8 +31,13 @@ function _readLastSeq(callback) {
         clearTimeout(_readTimer);
         
         fs.readFile(storeFile, 'utf8', function(err, data) {
-            data = JSON.parse(data);
-            callback(data[target].since);
+            if (! err) {
+                data = JSON.parse(data);
+                callback(data[target].since);
+            }
+            else {
+                callback();
+            }
         });
     }
     
