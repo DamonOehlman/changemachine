@@ -33,7 +33,7 @@ describe('changemachine neuron mapping', function() {
     it('will start processing items once the machine has a process handler', function(done) {
         assert.equal(_machine.stats().ready, 1, 'item still in "ready" queue');
         
-        _machine.on('process', function(item) {
+        _machine.once('process', function(item) {
             assert.equal(_machine.stats().processing, 1, 'item now in "processing" queue');
             assert.equal(_machine.stats().ready, 0, 'item no longer in "ready" queue');
             
@@ -43,5 +43,21 @@ describe('changemachine neuron mapping', function() {
             assert.equal(_machine.stats().processing, 0, 'item removed from "processing" queue');
             done();
         });
+    });
+    
+    it('failed items push to the fail queue', function(done) {
+        _machine.once('process', function(item) {
+            assert.equal(_machine.stats().processing, 1, 'item in "processing" queue');
+
+            // fail the item
+            item.fail();
+            
+            // item remains in the processing queue
+            assert.equal(_machine.stats().fail, 1, 'item now in the "fail" queue after fail');
+            assert.equal(_machine.stats().processing, 0, 'item removed from the processing queue after fail');
+            done();
+        });
+        
+        (new cm.Item()).enter(_machine);
     });
 });

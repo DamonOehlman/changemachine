@@ -1,5 +1,9 @@
 # changemachine changelog
 
+## 0.2.1
+
+- Add the `leaveOn` member for a machine, by default leaveOn.fail is false
+
 ## 0.2.0
 
 - Bump version to reflect addition of new methods in 0.1.x versions
