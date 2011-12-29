@@ -7,6 +7,6 @@
         "examples/*.js"
     ],
     "header" :            "ChangeMachine",
-    "subheader" :         "The quickie-wiki Github project page generator",
+    "subheader" :         "Reacting to change so you don't have to",
     "background" :        "bright-squares"
 }
