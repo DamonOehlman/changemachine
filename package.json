@@ -3,7 +3,7 @@
     "description": "changemachine - handle couchdb change notifications using neuron",
     "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
     "tags": ["steelmesh", "changes", "couchdb", "queue", "processor"],
-    "version": "0.2.2",
+    "version": "0.3.0",
     
     "main": "index.js",
     "engines": { "node": ">= 0.4.x < 0.7.0" },

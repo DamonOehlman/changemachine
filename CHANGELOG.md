@@ -3,7 +3,6 @@
 ## 0.3
 
 - Added machine registry and repl
-- Added "retrypipe" for automating retry operations for items
 - Reworked `fail` event to pass through error
 
 ## 0.2.2
