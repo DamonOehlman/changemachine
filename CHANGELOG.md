@@ -1,5 +1,10 @@
 # changemachine changelog
 
+## 0.3
+
+- Added machine registry and repl
+- Added "retrypipe" for automating retry operations for items
+
 ## 0.2.2
 
 - Rework "at capacity" detection logic
