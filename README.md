@@ -1,4 +1,4 @@
-<img src="https://github.com/steelmesh/changemachine/raw/master/assets/changemachine-logo.png" style="float: left" title="ChangeMachine" />
+<img src="https://github.com/steelmesh/changemachine/raw/master/assets/changemachine-logo.png" style="float: left; margin-right: 10px;" title="ChangeMachine" />
 
 ChangeMachine is a critical component in the [Steelmesh stack](http://github.com/steelmesh).  It is responsible for monitoring and responding to changes in a number of couchdb instances and taking appropriate actions in response to those changes.
 
@@ -6,10 +6,45 @@ The implementation of ChangeMachine is reasonably simple thanks to the [flatiron
 
 <a href="http://travis-ci.org/#!/steelmesh/changemachine"><img src="https://secure.travis-ci.org/steelmesh/changemachine.png" alt="Build Status"></a>
 
-## Design Goals
+## Overview
 
-ChangeMachine is designed to work in similar fashion to real world 
+ChangeMachine is designed to work in similar fashion to manufacturing plant, whereby a plant is made up of many machines that perform a single function, and items (or materials) enter the machine, get processed and leave the machine.
 
+In most cases, a machine processes an item successfully:
+
+```js
+machine.on('process', function(item) {
+	// do something with the item
+	
+	// mark the item as done
+	item.done();
+});
+```
+
+But sometimes things can go wrong:
+
+```js
+machine.on('process', function(item) {
+	try {
+		// do something with the item
+		
+		// mark the item as done
+		item.done();
+	}
+	catch (e) {
+		// mark the item as failed
+		item.fail({ error: e });
+	}
+});
+```
+
+In which case, we want to know about it:
+
+```
+machine.on('fail', function(item) {
+	console.log('got a failed item: ' + item.id);
+});
+```
 
 ## Examples
 

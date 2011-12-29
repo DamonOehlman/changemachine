@@ -1,4 +1,4 @@
-<!DOCTYPE html> <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">      <title>ChangeMachine</title>   <style>     body {       font-size: 16px;       line-height: 24px;       background: #fff url("bg.png");       color: #252519;       font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;       padding: 0 0 50px 50px;     }     div.container {       width: 720px;       margin: 50px 0 50px 50px;     }     p {       width: 550px;     }       #documentation p {         margin-bottom: 4px;       }     a, a:visited {       padding: 0 2px;       text-decoration: none;       background: #dbe6f3;       color: #3f6fa5;     }     a:active, a:hover {       color: #dbe6f3;       background: #3f6fa5;     }     h1, h2, h3, h4, h5, h6 {       margin-top: 40px;       width: 550px;       line-height: 1.25em;     }     b.header {       font-size: 18px;     }     span.alias {       font-size: 14px;       font-style: italic;       margin-left: 20px;     }     table, tr, td {       margin: 0; padding: 0;     }       td {         padding: 2px 12px 2px 0;       }     ul {       list-style-type: circle;       padding: 0 0 0 20px;     }       li {         width: 500px;         margin-bottom: 10px;       }     code, pre, tt {       font-family: Monaco, Consolas, "Lucida Console", monospace;       font-size: 12px;       line-height: 18px;       color: #555529;     }       pre {         font-size: 12px;         padding: 2px 0 2px 12px;         border-left: 6px solid #aaaa99;         margin: 0px 0 30px;       }   </style> </head> <body>   <h1>ChangeMachine</h1>        <em>The quickie-wiki Github project page generator</em>         <p><img src="https://github.com/steelmesh/changemachine/raw/master/assets/changemachine-logo.png" style="float: left" title="ChangeMachine" /></p>
+<!DOCTYPE html> <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">      <title>ChangeMachine</title>   <style>     body {       font-size: 16px;       line-height: 24px;       background: #fff url("bg.png");       color: #252519;       font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;       padding: 0 0 50px 50px;     }     div.container {       width: 720px;       margin: 50px 0 50px 50px;     }     p {       width: 550px;     }       #documentation p {         margin-bottom: 4px;       }     a, a:visited {       padding: 0 2px;       text-decoration: none;       background: #dbe6f3;       color: #3f6fa5;     }     a:active, a:hover {       color: #dbe6f3;       background: #3f6fa5;     }     h1, h2, h3, h4, h5, h6 {       margin-top: 40px;       width: 550px;       line-height: 1.25em;     }     b.header {       font-size: 18px;     }     span.alias {       font-size: 14px;       font-style: italic;       margin-left: 20px;     }     table, tr, td {       margin: 0; padding: 0;     }       td {         padding: 2px 12px 2px 0;       }     ul {       list-style-type: circle;       padding: 0 0 0 20px;     }       li {         width: 500px;         margin-bottom: 10px;       }     code, pre, tt {       font-family: Monaco, Consolas, "Lucida Console", monospace;       font-size: 12px;       line-height: 18px;       color: #555529;     }       pre {         font-size: 12px;         padding: 2px 0 2px 12px;         border-left: 6px solid #aaaa99;         margin: 0px 0 30px;       }   </style> </head> <body>   <h1>ChangeMachine</h1>        <em>Reacting to change so you don't have to</em>         <p><img src="https://github.com/steelmesh/changemachine/raw/master/assets/changemachine-logo.png" style="float: left; margin-right: 10px;" title="ChangeMachine" /></p>
 
 <p>ChangeMachine is a critical component in the <a href="http://github.com/steelmesh">Steelmesh stack</a>.  It is responsible for monitoring and responding to changes in a number of couchdb instances and taking appropriate actions in response to those changes.</p>
 
@@ -6,9 +6,37 @@
 
 <p><a href="http://travis-ci.org/#!/steelmesh/changemachine"><img src="https://secure.travis-ci.org/steelmesh/changemachine.png" alt="Build Status"></a></p>
 
-<h2>Design Goals</h2>
+<h2>Overview</h2>
 
-<p>ChangeMachine is designed to work in similar fashion to real world </p>
+<p>ChangeMachine is designed to work in similar fashion to manufacturing plant, whereby a plant is made up of many machines that perform a single function, and items (or materials) enter the machine, get processed and leave the machine.</p>
+
+<p>In most cases, a machine processes an item successfully:</p>
+
+<pre>
+machine.on('process', function(item) {
+    // do something with the item
+
+    // mark the item as done
+    item.done();
+});
+</pre>
+
+<p>But sometimes things can go wrong:</p>
+
+<pre>
+machine.on('process', function(item) {
+    try {
+        // do something with the item
+
+        // mark the item as done
+        item.done();
+    }
+    catch (e) {
+        // mark the item as failed
+        item.fail({ error: e });
+    }
+});
+</pre>
 
 <h2>Examples</h2>
 
