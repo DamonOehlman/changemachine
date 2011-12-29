@@ -6,7 +6,7 @@ The implementation of ChangeMachine is reasonably simple thanks to the [flatiron
 
 <a href="http://travis-ci.org/#!/steelmesh/changemachine"><img src="https://secure.travis-ci.org/steelmesh/changemachine.png" alt="Build Status"></a>
 
-## Overview
+## Getting Started
 
 ChangeMachine is designed to work in similar fashion to manufacturing plant, whereby a plant is made up of many machines that perform a single function, and items (or materials) enter the machine, get processed and leave the machine.
 
@@ -38,10 +38,21 @@ machine.on('process', function(item) {
 });
 ```
 
-In which case, we want to know about it:
+Additionally, sometimes you might receive an error when something is done but not want to have to call a separate fail function.  You can do this by passing an error in the options for any of the `done`, `fail` or `skip` methods and the status will be remapped to `fail`:
+
+```js
+machine.on('process', function(item) {
+	// write the item data to a file
+	writeItemData(item, function(err) {
+		item.done({ error: err });
+	});
+});
+```
+
+Regardless of how you flag that an item has failed, you probably want to know about it:
 
 ```
-machine.on('fail', function(item) {
+machine.on('fail', function(item, err) {
 	console.log('got a failed item: ' + item.id);
 });
 ```
