@@ -3,7 +3,7 @@
     "description": "changemachine - handle couchdb change notifications using neuron",
     "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
     "tags": ["steelmesh", "changes", "couchdb", "queue", "processor"],
-    "version": "0.3.0",
+    "version": "0.3.1",
     
     "main": "index.js",
     "engines": { "node": ">= 0.4.x < 0.7.0" },
@@ -20,11 +20,11 @@
     
     "repository": {
         "type": "git",
-        "url": "http://github.com/steelmesh/changemachine.git"
+        "url": "http://github.com/DamonOehlman/changemachine.git"
     },
     
     "bugs": {
-        "url": "http://github.com/steelmesh/changemachine/issues"
+        "url": "http://github.com/DamonOehlman/changemachine/issues"
     },
     
     "scripts": { "test": "mocha --reporter spec -t 3000" },

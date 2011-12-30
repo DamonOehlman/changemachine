@@ -57,6 +57,10 @@ machine.on('fail', function(item, err) {
 });
 ```
 
+## Use Cases
+
+To be completed.
+
 ## Examples
 
 The following code snippets are taken from the examples in the repository:
