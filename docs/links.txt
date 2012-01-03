@@ -1,0 +1,6 @@
+.. _Steelmesh: https://github.com/steelmesh/steelmesh
+.. _Steelmesh Stack: https://github.com/steelmesh
+.. _flatiron neuron: https://github.com/flatiron/neuron
+.. _changemate: https://github.com/DamonOehlman/changemate
+.. _changemachine source: https://github.com/DamonOehlman/changemachine
+.. _attachmate: https://github.com/steelmesh/attachmate

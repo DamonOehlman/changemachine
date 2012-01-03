@@ -1,3 +1,4 @@
 node_modules
 examples/data
 checkpoint.json
+docs/_build
