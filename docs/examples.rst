@@ -4,8 +4,6 @@ ChangeMachine Examples
 
 This section of the documentation comments on the examples that are included with the `ChangeMachine source`_.
 
-**NOTE:** As these examples are drawn from the sourcecode, the changemachine is referenced by calling ``require('../')`` and this would need to be replaced with ``require('changemachine')`` in your own code.
-
 Simple Example using Changemate Notifier
 ========================================
 

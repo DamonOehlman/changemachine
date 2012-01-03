@@ -1,4 +1,4 @@
-var cm = require('../'),
+var cm = require('changemachine'),
     machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
         concurrency: 25 // override neurons default concurrency of 50
     });

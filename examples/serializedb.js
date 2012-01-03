@@ -1,4 +1,4 @@
-var cm = require('../'),
+var cm = require('changemachine'),
     fs = require('fs'),
     path = require('path'),
     machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
