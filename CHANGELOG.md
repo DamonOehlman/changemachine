@@ -1,5 +1,9 @@
 # changemachine changelog
 
+## 0.3.2
+
+- Made it always ok to process, will address ability to pause the machine separately to the change notifiers at a later date.  For now stability of processing more important.
+
 ## 0.3
 
 - Added machine registry and repl

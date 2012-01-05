@@ -13,7 +13,7 @@ machine.on('process', function(item) {
 
     setTimeout(function() {
         item.fail();
-    }, Math.random() * 5000);
+    }, Math.random() * 500);
 });
 
 cm.autoretry(machine, {
