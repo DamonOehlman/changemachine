@@ -9,7 +9,7 @@ Machine = exports.Machine = require('./lib/machine').Machine;
 exports.repl = require('./lib/repl');
 exports.Item = require('./lib/item').Item;
 
-exports.RetryPipe = require('./lib/retrypipe').RetryPipe;
+exports.autoretry = require('./lib/autoretry');
 
 exports.CheckpointStore = require('./lib/storage/base').CheckpointStore;
 exports.JsonStore = require('./lib/storage/json').JsonStore;
