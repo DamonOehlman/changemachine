@@ -30,7 +30,7 @@
     "url": "http://github.com/DamonOehlman/changemachine/issues"
   },
   "scripts": {
-    "test": "mocha --reporter spec -t 3000"
+    "test": "mocha --reporter spec -t 10000"
   },
   "contributors": []
 }
