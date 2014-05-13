@@ -1,8 +1,8 @@
 {
   "name": "changemachine",
   "description": "changemachine - handle couchdb change notifications using neuron",
-  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "tags": [
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "keywords": [
     "steelmesh",
     "changes",
     "couchdb",
@@ -29,5 +29,11 @@
   "scripts": {
     "test": "mocha --reporter spec -t 10000"
   },
-  "contributors": []
+  "homepage": "https://github.com/DamonOehlman/changemachine",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "license": "MIT"
 }
