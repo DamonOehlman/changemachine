@@ -27,7 +27,8 @@
     "url": "http://github.com/DamonOehlman/changemachine/issues"
   },
   "scripts": {
-    "test": "mocha --reporter spec -t 60s"
+    "test": "mocha --reporter spec -t 60s",
+    "gendocs": "gendocs > README.md"
   },
   "homepage": "https://github.com/DamonOehlman/changemachine",
   "directories": {
