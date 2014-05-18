@@ -15,7 +15,7 @@ notifiers.
 
 [![NPM](https://nodei.co/npm/changemachine.png)](https://nodei.co/npm/changemachine/)
 
-[![Build Status](https://img.shields.io/travis/DamonOehlman/changemachine.svg?branch=master)](https://travis-ci.org/DamonOehlman/changemachine)
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/badges/stability-badges) [![Build Status](https://img.shields.io/travis/DamonOehlman/changemachine.svg?branch=master)](https://travis-ci.org/DamonOehlman/changemachine) 
 
 ## Online Documentation
 
