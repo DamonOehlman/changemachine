@@ -21,7 +21,7 @@ function _on(status, opts, outStatus, callback) {
 
 describe('machine raised appropriate events', function() {
     it('can create a machine to handle couch updates', function() {
-        _machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', { since: 0 });
+        _machine = new cm.Machine('<:couch:> https://fluxant.cloudant.com/seattle_neighbourhood', { since: 0 });
 
         assert(_machine);
     });
