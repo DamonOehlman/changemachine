@@ -9,15 +9,16 @@
     "queue",
     "processor"
   ],
+  "stability": "unstable",
   "version": "0.4.11",
   "main": "index.js",
   "dependencies": {
-    "debug": "*",
-    "changemate": "~0.6",
-    "neuron": "0.4.x"
+    "changemate": "^1.0.0",
+    "debug": "^2.2.0",
+    "neuron": "^0.4.7"
   },
   "devDependencies": {
-    "mocha": "^1"
+    "mocha": "^2.5.2"
   },
   "repository": {
     "type": "git",

@@ -15,7 +15,7 @@ notifiers.
 
 [![NPM](https://nodei.co/npm/changemachine.png)](https://nodei.co/npm/changemachine/)
 
-[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/badges/stability-badges) [![Build Status](https://img.shields.io/travis/DamonOehlman/changemachine.svg?branch=master)](https://travis-ci.org/DamonOehlman/changemachine) 
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://api.travis-ci.org/DamonOehlman/changemachine.svg?branch=master)](https://travis-ci.org/DamonOehlman/changemachine) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/changemachine/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/changemachine) 
 
 ## Online Documentation
 
@@ -67,7 +67,7 @@ distributed system then be sure to check out the likes of RabbitMQ and 0MQ.
 
 ### MIT
 
-Copyright (c) 2014 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2016 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
