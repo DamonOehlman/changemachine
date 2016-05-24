@@ -1,10 +1,15 @@
-var cm = require('../');
-var path = require('path');
-var machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
+const cm = require('../');
+const path = require('path');
+const sourceUrl = '<:couch:> http://fluxant.cloudant.com/seattle_neighbourhood'
+
+// create a new changemachine instance that will read updates from a remote db
+const machine = new cm.Machine(sourceUrl, {
+  // as updates are processed, we will keep a checkpoint of whether we are up
+  // to using the following changemachine storage
   storage: new cm.JsonStore({ filename: path.resolve(__dirname, 'checkpoint.json') })
 });
 
-var counter = 0;
+let counter = 0;
 
 // perform actions for each of the
 machine.on('process', function(item) {

@@ -5,15 +5,22 @@ var Machine;
 
   <img src="https://github.com/DamonOehlman/changemachine/raw/master/assets/changemachine-logo.png" style="float: left; margin-right: 10px;" title="ChangeMachine" />
 
-  ChangeMachine is a critical component in the
-  [Steelmesh stack](http://github.com/steelmesh).  It is responsible for
-  monitoring and responding to changes in a number of couchdb instances and
-  taking appropriate actions in response to those changes.
+  ChangeMachine is a package built on top of
+  ['changemate'](https://github.com/DamonOehlman/changemate) that can be
+  used to take particular actions for updates listed in a couchdb `_changes`
+  feed (or other changemate supported datasource - at this stage it's just CouchDB).
 
-  The implementation of ChangeMachine is reasonably simple thanks to the
-  [flatiron neuron](https://github.com/flatiron/neuron) queueing library and
-  through leveraging [changemate](https://github.com/DamonOehlman/changemate)
-  notifiers.
+  Job queueing is handled using [flatiron neuron](https://github.com/flatiron/neuron).
+
+  ## Example Usage
+
+  The following is an example of how checkpointing using changemachine works:
+
+  <<< examples/checkpoint.js
+
+  After this has been run you should see a `checkpoint.json` file in the
+  `examples/` folder with content that is telling changemachine where it is
+  up to with processing the changes for the specified datasource. 
 
   ## Online Documentation
 

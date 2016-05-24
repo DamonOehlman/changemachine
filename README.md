@@ -2,20 +2,54 @@
 
 <img src="https://github.com/DamonOehlman/changemachine/raw/master/assets/changemachine-logo.png" style="float: left; margin-right: 10px;" title="ChangeMachine" />
 
-ChangeMachine is a critical component in the
-[Steelmesh stack](http://github.com/steelmesh).  It is responsible for
-monitoring and responding to changes in a number of couchdb instances and
-taking appropriate actions in response to those changes.
+ChangeMachine is a package built on top of
+['changemate'](https://github.com/DamonOehlman/changemate) that can be
+used to take particular actions for updates listed in a couchdb `_changes`
+feed (or other changemate supported datasource - at this stage it's just CouchDB).
 
-The implementation of ChangeMachine is reasonably simple thanks to the
-[flatiron neuron](https://github.com/flatiron/neuron) queueing library and
-through leveraging [changemate](https://github.com/DamonOehlman/changemate)
-notifiers.
+Job queueing is handled using [flatiron neuron](https://github.com/flatiron/neuron).
 
 
 [![NPM](https://nodei.co/npm/changemachine.png)](https://nodei.co/npm/changemachine/)
 
 [![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://api.travis-ci.org/DamonOehlman/changemachine.svg?branch=master)](https://travis-ci.org/DamonOehlman/changemachine) [![bitHound Score](https://www.bithound.io/github/DamonOehlman/changemachine/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/changemachine) 
+
+## Example Usage
+
+The following is an example of how checkpointing using changemachine works:
+
+```js
+const cm = require('changemachine');
+const path = require('path');
+const sourceUrl = '<:couch:> http://fluxant.cloudant.com/seattle_neighbourhood'
+
+// create a new changemachine instance that will read updates from a remote db
+const machine = new cm.Machine(sourceUrl, {
+  // as updates are processed, we will keep a checkpoint of whether we are up
+  // to using the following changemachine storage
+  storage: new cm.JsonStore({ filename: path.resolve(__dirname, 'checkpoint.json') })
+});
+
+let counter = 0;
+
+// perform actions for each of the
+machine.on('process', function(item) {
+  console.log('processing item sequence: ' + item.seq);
+
+  counter++;
+  item.done();
+
+  // if we have processed 10 items, then stop
+  if (counter >= 10) {
+    machine.notifier.close();
+  }
+});
+
+```
+
+After this has been run you should see a `checkpoint.json` file in the
+`examples/` folder with content that is telling changemachine where it is
+up to with processing the changes for the specified datasource. 
 
 ## Online Documentation
 
