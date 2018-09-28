@@ -1,16 +1,16 @@
-var cm = require('changemachine'),
-    fs = require('fs'),
-    path = require('path'),
-    machine = new cm.Machine('<:couch:> http://sidelab.iriscouch.com/seattle_neighbourhood', {
-        include_docs: true,
-        concurrency: 10 // override neurons default concurrency of 50
-    }),
-    dataPath = path.resolve(__dirname, 'data');
-    
+const cm = require('changemachine');
+const fs = require('fs');
+const path = require('path');
+const machine = new cm.Machine('<:couch:> http://fluxant.cloudant.com/seattle_neighbourhood', {
+    include_docs: true,
+    concurrency: 10 // override neurons default concurrency of 50
+});
+const dataPath = path.resolve(__dirname, 'data');
+
 // make the data directory
 fs.mkdir(dataPath);
 
-// perform actions for each of the 
+// perform actions for each of the
 console.log('waiting for change information');
 machine.on('process', function(item) {
     try {
