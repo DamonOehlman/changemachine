@@ -14,7 +14,7 @@
   "main": "index.js",
   "dependencies": {
     "changemate": "^1.0.0",
-    "debug": "^2.2.0",
+    "debug": "^3.1.0",
     "neuron": "^0.4.7"
   },
   "devDependencies": {
